@@ -1,0 +1,11 @@
+{{- if .Params.record }}
+<a class="link" href="{{ .Params.record }}">
+{{- if in .Params.record "youtube.com" -}}
+youtube
+{{- else -}}
+video
+{{- end -}}
+</a>
+{{- else -}}
+-
+{{- end }}

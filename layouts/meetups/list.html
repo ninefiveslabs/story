@@ -1,0 +1,42 @@
+{{ define "title" }}{{ .Section | title }} &bullet; {{ .Site.Title }}{{ end }}
+{{ define "main" }}
+  <!-- list all talks; list non-future slides; else list things that are not future and not slides -->
+  {{ $pages := where .Paginator.Pages ".Params.skip" "ne" "true" }}
+  {{ with .OutputFormats.Get "Calendar" -}}
+  <p>Link do kalendarza zawierającego wszystkie wydarzenia: <a class="link" href="{{ .RelPermalink }}">.ics</a></p>
+  {{- end }}
+  <table>
+    <tr>
+      <th>Numer</th>
+      <!-- Numer 	Data1 	Tytuł 	Kalendarz 	Slajdy 	Nagranie -->
+      <th>Data</th>
+      <th>Tytuł</th>
+      <th>Kalendarz</th>
+      <th>Slajdy</th>
+      <th>Nagranie</th>
+    </tr>
+    {{ $total := len $pages }}
+    {{ range $index, $element := $pages }}
+      <tr>
+        <td>{{ sub $total $index }}</td>
+        <td>{{ .Date.Format "2006-01-02 15:04:05" }}</td>
+        <td>{{ .Title }}</td>
+        <td>
+        {{ with  $element.OutputFormats.Get "Calendar" -}}
+        <a class="link" href="{{ .RelPermalink }}">.ics</a>
+        {{- end }}
+        </td>
+        <td>{{ .Render "slides" }}</td>
+        <td>{{ .Render "record" }}</td>
+      </tr>
+    {{ end }}
+  </table>
+{{ end }}
+
+{{ define "pagination" }}
+<footer class="w-100 sans-serif" role="contentinfo">
+	<nav class="w-third-l pb3 f6 center db" role="navigation">
+		{{- template "_internal/pagination.html" . -}}
+	</nav>
+</footer>
+{{ end }}

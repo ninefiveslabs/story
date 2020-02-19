@@ -1,0 +1,11 @@
+{{- if .Params.slides }}
+<a class="link" href="{{ .Params.slides }}">
+{{- if in .Params.slides "docs.google.com" -}}
+GSlides
+{{- else -}}
+slides
+{{- end -}}
+</a>
+{{- else -}}
+-
+{{- end }}
