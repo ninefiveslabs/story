@@ -74,7 +74,7 @@
 						<a class="link f5 ml2 dim near-white" href="{{ .URL }}">{{ .Name }}</a>
 						{{- end }}
 						{{- range .Site.Menus.social }}
-						<a class="link f5 ml2 dim near-white" href="{{ .URL }}"><i class="{{ .Title }}"></i></a>
+						<a class="link f5 ml2 dim near-white" href="{{ .URL | relURL }}"><i class="{{ .Title }}"></i></a>
 						{{- end }}
 						<a class="link f5 ml2 dim near-white fas fa-rss-square" href="{{ "index.xml" | relURL }}" title="RSS Feed"></a>
 						<a class="link f5 ml2 dim near-white fas fa-search" href="{{ "search/" | relURL }}" role="search" title="Search"></a>

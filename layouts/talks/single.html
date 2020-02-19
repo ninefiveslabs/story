@@ -2,7 +2,7 @@
 {{ define "main" }}
 <article class="center bg-white br-3 pv1 ph4 nested-copy-line-height lh-copy f4 nested-links mw-100 measure-wide">
 		{{ with .Params.slides }}
-		<p><a id="slides_link" class="ba black br-3 bw1 dib no-underline ph2 pv1" href="{{ . | absURL }}">Slides</a>
+		<p><a id="slides_link" class="ba black br-3 bw1 dib no-underline ph2 pv1" href="{{ . | relURL }}">Slides</a>
 		{{ end }}
 		{{ with .Params.video }}
 		<a id="video_link" class="ba black br-3 bw1 dib no-underline ph2 pv1" href="{{ . }}">Video</a>
@@ -66,7 +66,7 @@ $( function() {
 {{ define "social" }}
 		<meta property="og:title" content="{{ cond (eq .Site.Params.titlecase true) (.Title | title | markdownify) (.Title | markdownify) }}" />
 		<meta property="og:type" content="article" />
-		<meta property="og:image" content="{{ default (default "img/default-header-img.jpg" .Params.image) .Params.thumbnail | absURL }}" />
+		<meta property="og:image" content="{{ default (default "img/default-header-img.jpg" .Params.image) .Params.thumbnail | relURL }}" />
 		<meta property="og:description" content="{{ .Description | markdownify }}" />
 		<meta property="og:url" content="{{ .Permalink }}" />
 		<meta property="og:site_name" content="{{ cond (eq .Site.Params.titlecase true) (.Title | title | markdownify) (.Title | markdownify) }}" />
